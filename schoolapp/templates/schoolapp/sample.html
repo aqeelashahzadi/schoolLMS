@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-school</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  {%load static%}
+  <link rel="stylesheet" href="{%static 'schoolapp/style.css'%}">
+</head>
+
+<body>
+  {%load static%}
+  <!-- nav -->
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'homen' %}"><img src="{%static 'schoolapp/img/logo.png'%}"  alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0  ms-auto">
+          <li class="nav-item">
+            <a class="nav-link action"  href="{% url 'homen' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'coursesn' %}">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contactn' %}">Contact Us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Start As
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'coursesn' %}">Student</a></li>
+              <li><hr class="dropdown-divider"></li>
+              
+              <li><a class="dropdown-item" href="{% url 'teacherhomen' %}">Teacher</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div></div>
+        {% if user.is_authenticated %}
+        <ul class="userhandlinglogout">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user-tie usernamemar"></i>&nbsp;{{request.user}}
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">{{user.email}}</li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logoutn' %}">Logout</a></li>
+            </ul>
+          </li>
+         </ul> 
+        {% else %}
+            <a href="{% url 'login_n' %}"><div class="butt" id="small" >Login</div></a>&nbsp;&nbsp;
+            <a href="{% url 'registern' %}"><div class="butt" id="small" >Signup</div></a>
+            {% endif%}
+        </div>
+      </div>
+    </div>
+  </nav>
+<!-- nav end-->
+  <!-- banner -->
+  <div class="banner_home wraper">
+    <div class="container">
+      <div class="banner_wraper width_100 d-flex">
+        <div class="banner_left">
+          <h1>Welcome <br>To our LMS for school</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, atque! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Ad, facilis?</p>
+        </div>
+        <div class="banner_right" ><img src="{%static 'schoolapp/img/banner.webp'%}" width="100%" height="100%" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <!-- border -->
+  <div class="custom-shape-divider-top-1724760974 shap_divi">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path
+        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+        opacity=".25" class="shape-fill"></path>
+      <path
+        d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+        opacity=".5" class="shape-fill"></path>
+      <path
+        d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+        class="shape-fill"></path>
+    </svg>
+  </div>
+  <!-- border end -->
+  <!-- banner end -->
+  <!-- features -->
+  <div class="wraper">
+    <div class="container">
+      <div class="feature-wraper">
+        <div class="heading" id="fea">
+          <span class="heading1">E-school LMS </span>
+          <span class="heading2">- Features</span>
+        </div>
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="cardcarousel d-flex">
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/notebook-1850613_1280.jpg'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="cardcarousel d-flex">
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/laptop-1205256_1280.jpg'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="cardcarousel d-flex">
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+                <div class="card mb-4" style="width: 18rem;">
+                  <img src="{%static 'schoolapp/img/banner.webp'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        </div>
+        </div>
+      </div>
+
+
+      <!-- features end -->
+      <!-- why us -->
+      <div class="wraper">
+        <div class="container">
+          <div class="pm">
+            <div class="heading" id="whyusid">
+              <span class="heading1">E-school LMS </span>
+              <span class="heading2">- Why US</span>
+            </div>
+            <div class="whyus width_100 d-flex">
+
+              <div class="whyusleft">
+                <div class="imgcircle1">
+                  <div class="imagcircle2">
+                    <div class="imgcircle3">
+                      <img src="{%static 'schoolapp/img/child-5976951_1280.jpg'%}" width="74%" height="87%" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='whyusright'>
+                <h3>Why Us</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, atque! Lorem ipsum dolor sit amet
+                  consectetur adipisicing elit. Ad, facilis? Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  In,
+                  voluptates. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem consequuntur nam
+                  beatae
+                  mollitia aliquam eos provident odit aperiam nobis omnis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- why us end -->
+       <!-- summary -->
+        <div class="wraper">
+          <div class="container">
+            <div class="heading" id="summary">
+              <span class="heading1">E-school LMS </span>
+              <span class="heading2">- Statistics</span>
+            </div>
+          </div>
+          <div class="container">
+    
+            <div class="row">
+        
+          <div class="four col-md-3">
+            <div class="counter-box ">
+              <i class="fa-solid fa-face-smile"></i>
+              <span class="counter">2147</span>
+              <p>Happy Customers</p>
+            </div>
+          </div>
+          <div class="four col-md-3">
+            <div class="counter-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="counter">3275</span>
+              <p>Registered Students</p>
+            </div>
+          </div>
+          <div class="four col-md-3">
+            <div class="counter-box">
+              <i class="fa  fa-shopping-cart"></i>
+              <span class="counter">289</span>
+              <p>Available courses</p>
+            </div>
+          </div>
+          <div class="four col-md-3">
+            <div class="counter-box">
+              <i class="fa  fa-user"></i>
+              <span class="counter">100</span>
+              <p>Staff Available</p>
+            </div>
+          </div>
+          </div>	
+        </div>
+        </div>
+       <!-- summary end-->
+        <!-- vision -->
+         <div class="wraper">
+          <div class="container">
+            <div class="heading" id="vision">
+              <span class="heading1">E-school LMS </span>
+              <span class="heading2">- Vission</span>
+            </div>
+            <div class="visionwraper width_100 ">
+              <div class="vleft">
+                <h4>VISSION</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia delectus enim nostrum ea rerum, libero amet id fuga, sunt esse mollitia cupiditate odit eius. Voluptate voluptatem necessitatibus pariatur enim sed autem, sapiente reiciendis dolor expedita accusantium labore illo ipsum, obcaecati nulla natus molestiae explicabo corporis optio adipisci repellendus dicta eveniet.</p>
+                <h4>MISSION</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tenetur fuga quasi ipsam odio laboriosam ducimus quia sed dolorem officia? Iste tempora earum provident animi consequuntur est veniam quasi molestias.</p>
+
+              </div>
+              <div class="vright">
+                <img src="{%static 'schoolapp/img/university-105709_1280.jpg'%}" alt="">
+              </div>
+            </div>
+          </div>
+         </div>
+        <!-- vision end -->
+
+           <!-- footer -->
+    <footer>
+      <div class="wraper">
+          <div class="container">
+              <div class="footerwraper">
+                  <div class="fooleft">
+                      <img src="{%static 'schoolapp/img/logo.png'%}" alt="error">
+                  </div>
+                  <div class="fooright">
+                      <div class="linksf">
+                          <h3>LINKS</h3>
+                          <ul>
+                            <li><a href="{% url 'homen' %}">Home</a></li>
+                            <li><a href="{% url 'classn' %}">classes</a></li>
+                            <li><a href="{% url 'contactn' %}">Contact</a></li>
+                            <li><a href="{% url 'coursesn' %}">Courses</a></li>
+                            <li><a href="{% url 'mycoursesn' %}">My_Courses</a></li>
+                        </ul>
+                      </div>
+                      <div class="contactf">
+                          <h3>CONTACT INFO</h3>
+                          <ul>
+                              <li>
+                                  street no: 90 Block no: 76 Gamber Okara Cantt.
+                              </li>
+                              <li>ph#: 033223288237281</li>
+                              <li>email: e-school@gmail.com</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="fooend">
+                  <div class="fooend1">
+                      <hr>
+                  </div>
+                  <div class="fooend2">
+                      <ul>
+                          <li><a href="https://www.youtube.com/" target="_blank"><i
+                                      class="fa-brands fa-youtube"></i></a></li>
+                          <li><a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank"><i
+                                      class="fa-brands fa-facebook"></i></a></li>
+                          <li><a href="https://pk.linkedin.com/" target="_blank"><i
+                                      class="fa-brands fa-linkedin"></i></a></li>
+                          <li><a href="https://www.instagram.com/" target="_blank"><i
+                                      class="fa-brands fa-square-instagram"></i></a></li>
+                      </ul>
+                  </div>
+                  <div class="fooend3">
+                      <hr>
+                  </div>
+              </div>
+              <div class="fooend4">
+                  <hr>
+              </div>
+              <div class="fooend5">
+                  <p>copy @ Lorem ipsum dolor sit amet. Lorem ipsum dolor sit.</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <!-- footer end -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>
+

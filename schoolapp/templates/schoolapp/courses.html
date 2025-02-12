@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-school</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'schoolapp/style.css'%}">
+</head>
+
+<body>
+    <div class="width_100 ">
+        
+    {%load static%}
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'homen' %}"><img src="{%static 'schoolapp/img/logo.png'%}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0  ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'homen' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link action" href="{% url 'coursesn' %}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mycoursesn' %}">My Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contactn' %}">Contact Us</a>
+                    </li>
+
+                </ul>
+                <div class="butt" id="small">Login</div>
+            </div>
+        </div>
+        
+    </nav>
+    <!-- nav end-->
+
+    <div class="container">
+        <div class="cpara">
+            <h2>All Courses</h2>
+        </div>
+        <div class="cpara2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, id?</p>
+        </div>
+    </div>
+    <div class="corsesbanner width_100">
+        <div class="coursesimg">
+            <div class="container">
+                <h4>Find You Course</h4>
+                <p>Lorem ipsum dolor, sit amet explicabo cum consectetur ajsdvoluptatem ut reiciendis nam sint ratione
+                    illum. Architecto, commodi provident.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- cars -->
+    <div class="wraper">
+        <div class="container">
+            <d  iv class="cardbox ">
+                <div class="filters">
+                    <div class="filterinner">
+                        <h4>Filters</h4>
+                        <div class="filtername" id="filtersearch">
+                            <h5>Search by name:</h5>
+                            <input type="search">
+                        </div>
+                        <div class="filtername" id="classnames">
+                            <h5>Search by class:</h5>
+                            <label for="class1">Class 1</label>
+                            <input type="radio" name="class" id="class1" value="1">
+                            <label for="class2">Class 2</label>
+                            <input type="radio" name="class" id="class2" value="1">
+                            <label for="class3">Class 3</label>
+                            <input type="radio" name="class" id="class3" value="1">
+                            <label for="class4">Class 4</label>
+                            <input type="radio" name="class" id="class4" value="1">
+                            <label for="class5">Class 5</label>
+                            <input type="radio" name="class" id="class5" value="1">
+                            <label for="class6">Class 6</label>
+                            <input type="radio" name="class" id="class6" value="1">
+                            <label for="class7">Class 7</label>
+                            <input type="radio" name="class" id="class7" value="1">
+                            <label for="class8">Class 8</label>
+                            <input type="radio" name="class" id="class8" value="1">
+                            <label for="class9">Class 9</label>
+                            <input type="radio" name="class" id="class9" value="1">
+                            <label for="class10">Class 10</label>
+                            <input type="radio" name="class" id="class10" value="1">
+                            <label for="class11">Class 11</label>
+                            <input type="radio" name="class" id="class11" value="1">
+                            <label for="class12">Class 12</label>
+                            <input type="radio" name="class" id="class12" value="1">
+
+                        </div>
+                        <div class="filtername" id="filternumber">
+                            <h5>Search by price:</h5>
+                            <input type="number" name="" id="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="cardwraper">
+                    {% for course_data in courses2 %}
+                    <div class="card cardimgwith cardhi" style="width: 16rem;">
+                        <img src="/media/{{ course_data.course.image }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{course_data.course.name}}</h5>
+                            <p class="card-text">{{ course_data.course.detail}}</p>
+
+                            <form action="{% url 'coursesn' %}" method="POST">{% csrf_token %}
+                            <input type="text" hidden name="idOfProductToSendBack2"
+                            value="{{course_data.course.id}}">
+                            <input type="submit" class="seesub" value="See all subjects ->">
+                               
+                            </form>
+                                <form action="{% url 'coursesn' %}" method="POST">{% csrf_token %}
+                                    <input type="text" hidden name="idOfProductToSendBack"
+                                    value="{{course_data.course.id}}">
+                                {% if course_data.in_cart%}
+
+                                {% else%}
+                                <input type="submit" class="butt" value="Buy Course">
+                                {% endif%}
+                               
+
+                            </form>
+                        </div>
+                    </div> {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- cars end -->
+
+    <!-- footer -->
+    <footer>
+        <div class="wraper">
+            <div class="container">
+                <div class="footerwraper">
+                    <div class="fooleft">
+                        <img src="{%static 'schoolapp/img/logo.png'%}" alt="error">
+                    </div>
+                    <div class="fooright">
+                        <div class="linksf">
+                            <h3>LINKS</h3>
+                            <ul>
+                                <li><a href="{% url 'homen' %}">Home</a></li>
+                                <li><a href="{% url 'classn' %}">classes</a></li>
+                                <li><a href="{% url 'contactn' %}">Contact</a></li>
+                                <li><a href="{% url 'coursesn' %}">Courses</a></li>
+                                <li><a href="{% url 'mycoursesn' %}">My_Courses</a></li>
+                            </ul>
+                        </div>
+                        <div class="contactf">
+                            <h3>CONTACT INFO</h3>
+                            <ul>
+                                <li>
+                                    street no: 90 Block no: 76 Gamber Okara Cantt.
+                                </li>
+                                <li>ph#: 033223288237281</li>
+                                <li>email: e-school@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="fooend">
+                    <div class="fooend1">
+                        <hr>
+                    </div>
+                    <div class="fooend2">
+                        <ul>
+                            <li><a href="https://www.youtube.com/" target="_blank"><i
+                                        class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank"><i
+                                        class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="https://pk.linkedin.com/" target="_blank"><i
+                                        class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank"><i
+                                        class="fa-brands fa-square-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="fooend3">
+                        <hr>
+                    </div>
+                </div>
+                <div class="fooend4">
+                    <hr>
+                </div>
+                <div class="fooend5">
+                    <p>copy @ Lorem ipsum dolor sit amet. Lorem ipsum dolor sit.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</html>
